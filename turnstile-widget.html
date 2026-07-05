@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; background: transparent; }
+    </style>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+</head>
+<body>
+    <div class="cf-turnstile" 
+         data-sitekey="0x4AAAAAAAxJo74sSUrLmQm0" 
+         data-theme="light"
+         data-callback="onVerify"></div>
+
+    <script>
+        // 當使用者驗證成功時，把 token 傳回給父網頁（你的 ord_record.php）
+        function onVerify(token) {
+            window.parent.postMessage({
+                type: 'turnstile-success',
+                token: token
+            }, '*');
+        }
+    </script>
+</body>
+</html>
